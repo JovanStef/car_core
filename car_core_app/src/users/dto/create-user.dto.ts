@@ -1,0 +1,11 @@
+import { MinLength, IsEmail, IsString } from "@nestjs/class-validator";
+
+export class CreateUserDto {
+    @IsEmail()
+    email:string;
+
+    @IsString()
+    @MinLength(4)
+    password:string;
+
+}

@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: ./car_core_app
+      dockerfile: Dockerfile
+    container_name: car_core_app
+    # environment:
+    #   - PORT=${PORT}
+    ports:
+      - '3000:3000'
+    # depends_on:
+    #   - db
+    volumes:
+      - ./car_core_app:/app
+      - /car_core_app/app/node_modules
+  web:
+    build:
+      context: ./car_core_web
+      dockerfile: Dockerfile
+    container_name: car_core_web
+    # environment:
+    #   - PORT=${PORT}
+    ports:
+      - '5173:5173'
+    depends_on:
+      - app
+    volumes:
+      - ./car_core_web:/app
+      - /car_core_web/app/node_modules

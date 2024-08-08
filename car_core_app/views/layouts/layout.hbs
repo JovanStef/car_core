@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>App</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+>
+  </head>
+  <body>
+<div class="container is-widescreen">
+  {{> nav navItems }}
+App served
+{{message}}
+{{navItems}}
+
+<div hx-post="/mouse_entered" hx-trigger="mouseenter">
+    [Here Mouse, Mouse!]
+</div>
+</div>
+<div>
+  {{> main}}
+</div>
+    
+  </body>
+</html>
+
