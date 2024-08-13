@@ -2,16 +2,16 @@
 import { AuthDto } from '@/DTO/auth/auth.dto';
 import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
 import router from '@/router';
-import AuthenticationService from '@/services/auth/authentication.service';
+import AuthenticationRequestService from '@/services/auth/authentication.request.service';
 import { ref } from 'vue';
-const authenticationService = new AuthenticationService()
+const authenticationRequestService = new AuthenticationRequestService()
 const email = ref('')
 const password = ref('')
 
 const onLogin = async ()=> {
   const payload = AuthDto.loginReq(email.value , password.value)
   try{
-    await authenticationService.login({... payload})
+    await authenticationRequestService.login({... payload})
     router.push(HomeRouteEnum.Path)
   }catch(error){
 console.log(error);

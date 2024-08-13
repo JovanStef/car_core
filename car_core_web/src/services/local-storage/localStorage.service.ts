@@ -7,7 +7,7 @@ export class LocalStorageService {
     }
 
     static get(key:LocalStorageKeyEnum){
-        return localStorage.getItem(key);
+        return JSON.parse(localStorage.getItem(key)as any);
     }
 
     static delete(key:LocalStorageKeyEnum){

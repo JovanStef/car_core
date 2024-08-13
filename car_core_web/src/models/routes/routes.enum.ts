@@ -8,3 +8,8 @@ export enum LoginRouteEnum  {
     Path = '/login'
 }
 
+export enum NotFoundRouteEnum {
+    Name = 'not-found',
+    Path = '/404'
+}
+

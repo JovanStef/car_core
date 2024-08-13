@@ -8,7 +8,7 @@ import { UsersInterceptor } from './interceptors/users.interceptor';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
+// TODO user decorator
   @Post()
   @UseInterceptors(UsersInterceptor)
    create(@Body() createUserDto: CreateUserDto) {
@@ -24,9 +24,8 @@ export class UsersController {
   }
 
   @Get(':id')
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(UsersInterceptor)
-
   async findOne(@Param('id' , ParseIntPipe) id: string) {
     try {
       return await this.usersService.findOne(+id);

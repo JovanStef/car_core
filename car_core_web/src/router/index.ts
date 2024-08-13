@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import { LocalStorageService } from '@/services/local-storage/localStorage.service'
-import { LocalStorageKeyEnum } from '@/models/local-storage/localStorage.enum'
-import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum'
+import { HomeRouteEnum, LoginRouteEnum, NotFoundRouteEnum } from '@/models/routes/routes.enum'
+import { GuardService } from '@/services/route/guard.service'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,19 +18,17 @@ const router = createRouter({
       meta: {
         hideNavbar: true,
        }
-    }
+    },
+    { path: NotFoundRouteEnum.Path, 
+      name: NotFoundRouteEnum.Name ,
+      component: () => import('../views/NotFoundView.vue'),
+      meta: {
+        hideNavbar: true,
+       } },  
+  { path: '/:pathMatch(.*)*', redirect: NotFoundRouteEnum.Path },  
   ]
-  // TODO 404 view
 })
 
-router.beforeEach(async (to, from) => {
-  const isAuthenticated = LocalStorageService.get(LocalStorageKeyEnum.Token)
-  if (
-    !isAuthenticated &&
-    to.name !== LoginRouteEnum.Name
-  ) {
-    return { name: LoginRouteEnum.Name }
-  }
-})
+router.beforeEach(GuardService.authGuard)
 
 export default router
