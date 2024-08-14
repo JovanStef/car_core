@@ -4,11 +4,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UsersInterceptor } from './interceptors/users.interceptor';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-// TODO user decorator
   @Post()
   @UseInterceptors(UsersInterceptor)
    create(@Body() createUserDto: CreateUserDto) {
@@ -16,19 +16,11 @@ export class UsersController {
   }
 
   @Get()
-  // @UseGuards(JwtAuthGuard)
-  @UseInterceptors(UsersInterceptor)
-
-  findAll() {
-    return this.usersService.findAll();
-  }
-
-  @Get(':id')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(UsersInterceptor)
-  async findOne(@Param('id' , ParseIntPipe) id: string) {
+  async findOne(@CurrentUser() user) {
     try {
-      return await this.usersService.findOne(+id);
+      return await this.usersService.findOne(+user.userId);
     } catch (error) {
       throw new BadRequestException(error.message);
     }

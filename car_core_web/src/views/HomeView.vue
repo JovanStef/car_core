@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import TheWelcome from '../components/TheWelcome.vue'
 import UserRequstService from '@/services/user/user.request.service';
+
+// TODO navbar
+// TODO user logout
+// TODO loading page
+// TODO loading data
+// TODO cars list
+// TODO car details
 
 const user = ref({})
 const userRequstService = new UserRequstService()

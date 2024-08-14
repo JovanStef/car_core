@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AuthDto } from '@/DTO/auth/auth.dto';
+import { AuthDto } from '@/models/auth/auth.dto';
 import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
 import router from '@/router';
 import AuthenticationRequestService from '@/services/auth/authentication.request.service';

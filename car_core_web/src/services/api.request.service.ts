@@ -2,7 +2,6 @@ import api from "./axios.instance";
 
 export default abstract class ApiRequestService{
 endpoint = ''
-// private readonly baseUrl = 'http://localhost:3000'
     async post<T>(payload:any):Promise<T>{
         try {
             const response = await api.post(`${this.endpoint}`,{... payload});
@@ -12,12 +11,17 @@ endpoint = ''
         }
     }
 
-    async get(){
-        return await api.get(`${this.endpoint}`);
+    async get<T>():Promise<T>{
+try {
+    const response =  await api.get(`${this.endpoint}`);
+    return response.data
+} catch (error) {
+    throw error
+}
+
 
     }
-    // TODO check token 
-    // TODO interceptor axios
+ 
     // TODO refresh token axios
     // TODO env
 }
