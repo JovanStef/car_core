@@ -16,5 +16,16 @@ export default class AuthenticationRequestService extends ApiRequestService{
        
     }
 
+    async logout(){
+        try {
+            this.endpoint = 'auth/logout'
+           const response = await super.delete()
+           LocalStorageService.clear()
+           return response
+        } catch (error) {
+            throw error
+        }
+    }
+
 
 }

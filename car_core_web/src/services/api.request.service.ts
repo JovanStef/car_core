@@ -21,6 +21,15 @@ try {
 
 
     }
+
+    async delete<T>(payload?:any):Promise<T>{
+        try {
+            const response = await api.delete(`${this.endpoint}`,{... payload})
+            return response.data
+        } catch (error) {
+            throw error
+        }
+    }
  
     // TODO refresh token axios
     // TODO env

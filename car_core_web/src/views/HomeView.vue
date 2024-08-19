@@ -2,8 +2,6 @@
 import { onMounted, ref } from 'vue';
 import UserRequstService from '@/services/user/user.request.service';
 
-// TODO navbar
-// TODO user logout
 // TODO loading page
 // TODO loading data
 // TODO cars list

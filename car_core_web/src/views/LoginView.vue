@@ -23,7 +23,7 @@ console.log(error);
 
 <template>
   <main>
-    <Card>
+    <Card class="border-solid border-2">
       <template #title>Login</template>
       <template #content>
         <div class="pt-6">

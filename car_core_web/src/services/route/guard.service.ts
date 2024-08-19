@@ -1,5 +1,5 @@
 import { LocalStorageKeyEnum } from "@/models/local-storage/localStorage.enum"
-import { LoginRouteEnum } from "@/models/routes/routes.enum"
+import { HomeRouteEnum, LoginRouteEnum } from "@/models/routes/routes.enum"
 import { LocalStorageService } from "../local-storage/localStorage.service"
 
 export class GuardService{
@@ -14,6 +14,8 @@ export class GuardService{
         ) {
           
           return { name: LoginRouteEnum.Name }
+        }else if (isAuthenticated && to.name == LoginRouteEnum.Name){
+          return {name: HomeRouteEnum.Name}
         }
       
     }

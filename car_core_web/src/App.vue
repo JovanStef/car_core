@@ -4,7 +4,7 @@ import MainNav from './components/navigation/MainNav.vue';
 </script>
 
 <template>
-  <header>
+  <header class="self-start pt-3">
 <MainNav/>
     
   </header>
