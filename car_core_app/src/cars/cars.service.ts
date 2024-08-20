@@ -22,8 +22,8 @@ export class CarsService {
     return await this.carRepo.save(car);
   }
 
-  findAll() {
-    return `This action returns all cars`;
+  async findAll(id) {
+    return await this.carRepo.find({where:{user:id}})
   }
 
   async findOne(id: number) {

@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import UserRequstService from '@/services/user/user.request.service';
+import { CarRequestService } from '@/services/car/car.request.service';
 
 // TODO loading page
 // TODO loading data
 // TODO cars list
 // TODO car details
+// TODO error toast
 
-const user = ref({})
-const userRequstService = new UserRequstService()
+const cars = ref([] as any)
+const carRequestService = new CarRequestService()
 onMounted(async()=>{
   try {
-    user.value = await userRequstService.getUser()
-    
+    cars.value = await carRequestService.getAll()
   } catch (error) {
     console.log(error);
     
@@ -21,10 +22,8 @@ onMounted(async()=>{
 </script>
 
 <template>
-  <main>
     <pre>
-      {{ user }}
+      {{ cars }}
     </pre>
-    <TheWelcome />
-  </main>
+    
 </template>

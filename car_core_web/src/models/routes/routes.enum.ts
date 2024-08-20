@@ -13,3 +13,8 @@ export enum NotFoundRouteEnum {
     Path = '/404'
 }
 
+export enum ServiceSheetsRouteEnum {
+    Name = 'service-sheets',
+    Path = '/services'
+}
+

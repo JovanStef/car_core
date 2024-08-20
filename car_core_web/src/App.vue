@@ -4,12 +4,14 @@ import MainNav from './components/navigation/MainNav.vue';
 </script>
 
 <template>
-  <header class="self-start pt-3">
+  <header v-if="!$route.meta.hideNavbar" class="self-start py-3 header">
 <MainNav/>
     
   </header>
+<main class="main">
 
   <RouterView />
+</main>
 </template>
 
 

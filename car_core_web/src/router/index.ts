@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { HomeRouteEnum, LoginRouteEnum, NotFoundRouteEnum } from '@/models/routes/routes.enum'
+import { HomeRouteEnum, LoginRouteEnum, NotFoundRouteEnum, ServiceSheetsRouteEnum } from '@/models/routes/routes.enum'
 import { GuardService } from '@/services/route/guard.service'
 
 const router = createRouter({
@@ -9,6 +9,12 @@ const router = createRouter({
       path: HomeRouteEnum.Path,
       name: HomeRouteEnum.Name,
       component: () => import('../views/HomeView.vue')
+
+    },
+    {
+      path: ServiceSheetsRouteEnum.Path,
+      name: ServiceSheetsRouteEnum.Name,
+      component: () => import('../views/ServiceSheetsView.vue')
 
     },
     {

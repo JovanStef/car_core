@@ -1,3 +1,4 @@
 export enum LocalStorageKeyEnum {
-    Token = 'Token'
+    Token = 'Token',
+    RefreshToken = 'RefreshToken'
 }

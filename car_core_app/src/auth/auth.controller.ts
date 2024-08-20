@@ -29,7 +29,7 @@ export class AuthController {
   }
 
   @Delete('logout')
-  async logout(@Body() body: RefreshTokenDto){
+  async logout(@Body() body: any){
     const {refreshToken} = body
     return this.authService.logout(refreshToken)
   }

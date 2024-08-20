@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
@@ -37,6 +38,7 @@ export class Car {
   @Column()
   plate_numbers: string;
 
+  @Exclude({ toPlainOnly: true })
   @ManyToOne(() => User , (user) => user.car)
   user:User
 

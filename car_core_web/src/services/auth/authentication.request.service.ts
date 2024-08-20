@@ -8,8 +8,9 @@ export default class AuthenticationRequestService extends ApiRequestService{
 
     async login(payload:TloginReqDto){
         try {
-            const response = await super.post<TloginResDto>({... payload})
-            LocalStorageService.set(LocalStorageKeyEnum.Token , response.accessToken)
+            const {accessToken , refreshToken} = await super.post<TloginResDto>({... payload })
+            LocalStorageService.set(LocalStorageKeyEnum.Token , accessToken)
+            LocalStorageService.set(LocalStorageKeyEnum.RefreshToken , refreshToken)
         } catch (error) {
             throw error
         }
@@ -19,7 +20,8 @@ export default class AuthenticationRequestService extends ApiRequestService{
     async logout(){
         try {
             this.endpoint = 'auth/logout'
-           const response = await super.delete()
+            const refreshToken = LocalStorageService.get(LocalStorageKeyEnum.RefreshToken)
+           const response = await super.delete(refreshToken)
            LocalStorageService.clear()
            return response
         } catch (error) {

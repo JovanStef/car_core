@@ -30,7 +30,7 @@ api.interceptors.response.use( (response) => {
 },  (error) =>{
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    // LocalStorageService.delete(LocalStorageKeyEnum.Token)
+    LocalStorageService.clear()
     router.push(LoginRouteEnum.Name)
     // return Promise.reject(error);
   });

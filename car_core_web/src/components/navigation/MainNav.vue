@@ -5,7 +5,7 @@ import Menubar from 'primevue/menubar';
 
 import { ref } from "vue";
 import router from '@/router';
-import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
+import { HomeRouteEnum, LoginRouteEnum, ServiceSheetsRouteEnum } from '@/models/routes/routes.enum';
 import AuthenticationRequestService from '@/services/auth/authentication.request.service';
 
 const authenticationRequestService = new AuthenticationRequestService()
@@ -27,8 +27,7 @@ const items = ref([
     {
         label: 'Services',
         icon: 'pi pi-wrench',
-        command:()=> router.push(LoginRouteEnum.Path)
-        // TODO make services view
+        command:()=> router.push(ServiceSheetsRouteEnum.Path)
     },
     {
         label: 'User',
@@ -53,6 +52,6 @@ const items = ref([
 </script>
 
 <template>
-        <Menubar v-if="!$route.meta.hideNavbar" :model="items" />
+        <Menubar :model="items" />
 
 </template>
