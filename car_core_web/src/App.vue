@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import MainNav from './components/navigation/MainNav.vue';
+import FullPageSpinner from './components/loading/FullPageSpinner.vue'
 </script>
 
 <template>
+  <FullPageSpinner />
   <header v-if="!$route.meta.hideNavbar" class="self-start py-3 header">
 <MainNav/>
     
