@@ -23,7 +23,14 @@ export class CarsService {
   }
 
   async findAll(id) {
-    return await this.carRepo.find({where:{user:id}})
+    return await this.carRepo.find({
+      select:{
+        id:true,
+        make:true,
+        model:true,
+        photo:true
+      },
+      where:{user:id}})
   }
 
   async findOne(id: number) {

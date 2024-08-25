@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { FillPageSpinnerUiService } from '@/services/ui/FillPageSpinner.ui.service';
+import { FullPageSpinnerUiService } from '@/services/ui/fullPageSpinner.ui.service';
 import { ref } from '@vue/runtime-dom';
 import { useSubscription } from '@vueuse/rxjs';
 import ProgressSpinner from 'primevue/progressspinner';
 
 const showSpinner = ref(false)
 
-const $isLoading = FillPageSpinnerUiService.isLoading
+const isLoading$ = FullPageSpinnerUiService.isLoading
 
-useSubscription($isLoading.subscribe((value)=>{
+useSubscription(isLoading$.subscribe((value)=>{
     showSpinner.value = value
 }))
 

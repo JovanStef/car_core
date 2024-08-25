@@ -18,3 +18,8 @@ export enum ServiceSheetsRouteEnum {
     Path = '/services'
 }
 
+export enum CarDetailsRouteEnum {
+    Name = 'car',
+    Path = '/car'
+}
+

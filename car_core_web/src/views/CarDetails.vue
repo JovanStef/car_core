@@ -1,0 +1,3 @@
+<template>
+    Car details
+</template>

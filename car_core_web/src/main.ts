@@ -14,6 +14,7 @@ import InputText from 'primevue/inputtext';
 import FloatLabel from 'primevue/floatlabel';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
+import ToastService from 'primevue/toastservice';
 const app = createApp(App)
 
 app.use(PrimeVue, {
@@ -21,6 +22,7 @@ app.use(PrimeVue, {
         preset: Nora
     }
 });
+app.use(ToastService);
 app.component('Button', Button);
 app.component('Card', Card);
 app.component('Password', Password);

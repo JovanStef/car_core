@@ -4,6 +4,7 @@ import { LocalStorageKeyEnum } from '@/models/local-storage/localStorage.enum';
 import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
 import { useRouter } from 'vue-router';
 import router from '@/router';
+import { AlertsUiService } from './ui/alerts.ui.service';
 
 const API_URL = 'http://localhost:3000';
 const api = axios.create({
@@ -27,11 +28,12 @@ api.interceptors.response.use( (response) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
-},  (error) =>{
-  const {data} = error.response
-  const {statusCode , message} = data
-  if(statusCode === 400){
-    throw error
+  },  (error) =>{
+    const {data} = error.response
+    const {statusCode , message} = data
+    if(statusCode === 400){
+      AlertsUiService.addToast({severity: 'error', summary: 'Error', detail: message}).showToast()
+      throw error
   }
   // TODO global message
     // Any status codes that falls outside the range of 2xx cause this function to trigger

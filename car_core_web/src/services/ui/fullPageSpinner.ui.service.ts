@@ -1,6 +1,6 @@
 import { Subject } from "rxjs";
 
-export class FillPageSpinnerUiService {
+export class FullPageSpinnerUiService {
     static loading = new Subject<boolean>()
 
     static setIsLoading(value:boolean){
