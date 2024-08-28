@@ -32,7 +32,7 @@ const router = createRouter({
     {
       path:`${CarDetailsRouteEnum.Path}/:id`,
       name:CarDetailsRouteEnum.Name,
-      component:() => import('../views/CarDetails.vue')
+      component:() => import('../views/CarDetails.vue'),
     },
     {
       path: NotFoundRouteEnum.Path,

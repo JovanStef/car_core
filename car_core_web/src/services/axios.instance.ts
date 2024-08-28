@@ -1,8 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
 import { LocalStorageService } from './local-storage/localStorage.service';
 import { LocalStorageKeyEnum } from '@/models/local-storage/localStorage.enum';
-import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
-import { useRouter } from 'vue-router';
+import { LoginRouteEnum } from '@/models/routes/routes.enum';
 import router from '@/router';
 import { AlertsUiService } from './ui/alerts.ui.service';
 
@@ -38,8 +37,11 @@ api.interceptors.response.use( (response) => {
   // TODO global message
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    LocalStorageService.clear()
-    router.push(LoginRouteEnum.Name)
+    if(statusCode === 401){
+
+      LocalStorageService.clear()
+      router.push(LoginRouteEnum.Name)
+    }
     // return Promise.reject(error);
   });
 
