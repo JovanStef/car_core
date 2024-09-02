@@ -4,10 +4,8 @@ import { CarRequestService } from '@/services/car/car.request.service';
 import { FullPageSpinnerUiService } from '@/services/ui/fullPageSpinner.ui.service';
 import router from '@/router';
 import { CarDetailsRouteEnum } from '@/models/routes/routes.enum';
-
-// TODO cars list
+import AddNewCar from '@/components/car/AddNewCar.vue';
 // TODO car details
-// TODO car DTO
 const cars = ref([] as any)
 const carRequestService = new CarRequestService()
 
@@ -23,9 +21,19 @@ onMounted(async()=>{
     
   }
 })
+const show = ref(false)
+
 </script>
 
 <template>
+  <!-- TODO refactor to seperate components-->
+   <AddNewCar v-model:show="show" />
+
+
+<div class="grid gap-4 actions-container border rounded-xl overflow-hidden mb-4">
+  <Button class="ml-auto" icon="pi pi-plus-circle" @click="show=true"/>
+<!-- TODO sort / filter -->
+</div>
   <div class="grid gap-4 list-container">
   <template v-for="car in cars">
     <div class="grid gap-3 car-wrapper-item" >
@@ -34,13 +42,14 @@ onMounted(async()=>{
       </div> 
       <div class="info-wrapper">
         <ul>
-          <li>{{ car.make }}</li>
-          <li>{{ car.model }}</li>
+          <li><small>Make: </small><span>{{ car.make }}</span></li>
+          <li><small>Model: </small><span>{{ car.model }}</span></li>
         </ul>
       </div>
       <div class="icon-wrapper flex flex-col items-center justify-around">
-        <i class="pi pi-info-circle" @click="router.push(`${CarDetailsRouteEnum.Path}/${car.id}`)"></i>
-        <i class="pi pi-trash"></i>
+      <Button icon="pi pi-info-circle" @click="router.push(`${CarDetailsRouteEnum.Path}/${car.id}`)" />
+<Button icon="pi pi-trash" severity="danger"/>
+
       </div>
     </div>
   </template>
@@ -52,22 +61,23 @@ onMounted(async()=>{
   .car-wrapper-item{
     grid-template-columns: 25% 1fr 40px;
     border: 1px solid;
-  padding: 5px;
   border-radius: 12px;
+  max-height: 100px;
+  overflow: hidden;
   }
   .image-wrapper{
-    max-height: 75px;
+    height: 100%;
+    overflow: hidden;
   }
   .image-wrapper>img{
     border-radius: 6px 0 0 6px;
   }
   .icon-wrapper{
     border-left: 1px solid;
-    padding: 5px;
 }
 
-  .icon-wrapper>i{
+  .icon-wrapper>button{
     font-size: 20px;
-    padding: 2px;
+    height: 100%;
   }
 </style>

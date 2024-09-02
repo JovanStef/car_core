@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { AuthDto } from '@/models/auth/auth.dto';
-import { HomeRouteEnum, LoginRouteEnum } from '@/models/routes/routes.enum';
+import { HomeRouteEnum } from '@/models/routes/routes.enum';
 import router from '@/router';
 import AuthenticationRequestService from '@/services/auth/authentication.request.service';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import IndeterminateProggressBar from '@/components/loading/IndeterminateProggressBar.vue';
 import Message from 'primevue/message';
-import { log } from 'console';
 const authenticationRequestService = new AuthenticationRequestService()
 const email = ref('')
 const emailError = ref('')
