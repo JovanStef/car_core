@@ -23,11 +23,16 @@ onMounted(async()=>{
 })
 const show = ref(false)
 
+const onCarSave =(payload) =>{
+  console.log(payload);
+  
+}
+
 </script>
 
 <template>
   <!-- TODO refactor to seperate components-->
-   <AddNewCar v-model:show="show" />
+   <AddNewCar v-model:show="show" @submit="onCarSave"/>
 
 
 <div class="grid gap-4 actions-container border rounded-xl overflow-hidden mb-4">
