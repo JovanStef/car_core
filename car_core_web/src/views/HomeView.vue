@@ -8,6 +8,7 @@ import AddNewCar from '@/components/car/AddNewCar.vue';
 // TODO car details
 const cars = ref([] as any)
 const carRequestService = new CarRequestService()
+const baseUrl = import.meta.env.VITE_BASE_URL
 
 onMounted(async()=>{
   FullPageSpinnerUiService.setIsLoading(true) 
@@ -43,7 +44,7 @@ const onCarSave =(payload) =>{
   <template v-for="car in cars">
     <div class="grid gap-3 car-wrapper-item" >
       <div class="image-wrapper ">
-        <img class="w-full h-full object-cover" src="https://wiki.tripwireinteractive.com/TWIimages/4/47/Placeholder.png" alt="">
+        <img class="w-full h-full object-cover" :src="baseUrl + car.photo" alt="">
       </div> 
       <div class="info-wrapper">
         <ul>

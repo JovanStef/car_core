@@ -5,7 +5,7 @@ import { LoginRouteEnum } from '@/models/routes/routes.enum';
 import router from '@/router';
 import { AlertsUiService } from './ui/alerts.ui.service';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_BASE_URL;
 const api = axios.create({
     baseURL: API_URL
   });

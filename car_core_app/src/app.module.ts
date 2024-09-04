@@ -10,7 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CarsModule } from './cars/cars.module';
 import { Car } from './cars/entities/car.entity';
-import hbs from 'handlebars';
+import { StaticImagesModule } from './static/images.module';
 
 
 @Module({
@@ -26,7 +26,7 @@ import hbs from 'handlebars';
     ProfilesModule,
     AuthModule,
     CarsModule,
-    
+    StaticImagesModule
   ],
   controllers: [AppController],
   providers: [AppService],
