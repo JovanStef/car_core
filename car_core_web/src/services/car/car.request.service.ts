@@ -1,4 +1,4 @@
-import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto } from "@/models/car/car.dto.type";
+import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto, TCarUpsert, TCarUpsertDto } from "@/models/car/car.dto.type";
 import ApiRequestService from "../api.request.service";
 import { CarDto } from "@/models/car/car.dto";
 
@@ -19,6 +19,15 @@ export class CarRequestService extends ApiRequestService {
         try {
             const response = await super.findOne<TCarByIdResDto>(id)
             return CarDto.getByIdResDto(response)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async upsert(car:TCarUpsert):Promise<TCar>{
+        try {
+            const response = await super.post<TCarUpsertDto>(car) as any
+            return response
         } catch (error) {
             throw error
         }

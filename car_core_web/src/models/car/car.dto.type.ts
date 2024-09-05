@@ -34,3 +34,28 @@ id: number,
     modified: string,
   }
 
+
+
+  export type TCarUpsert = {
+    id?: string,
+  make: string,
+  model: string,
+  photo: File,
+  mileage: number,
+  year: string,
+  winNumber: string,
+  plateNumbers: string,
+  }
+
+  export type TCarUpsertDto = {
+    id?: string,
+    make: string,
+    model: string,
+    photo: File,
+    mileage: number,
+    year: string,
+    win_number: string,
+    plate_numbers: string,
+  
+  }
+

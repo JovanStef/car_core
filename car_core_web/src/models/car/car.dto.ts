@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto } from "./car.dto.type";
+import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto, TCarUpsert, TCarUpsertDto } from "./car.dto.type";
 
 export class CarDto{
     static getAllResDto(cars:TCarAllResDto[]):TCarAll[]{
@@ -25,6 +25,26 @@ export class CarDto{
             plateNumbers: car.plate_numbers,
             created: format(new Date(car.created_at),'dd/MM/yyyy'),
             modified: format(new Date(car.updated_at),'dd/MM/yyyy'),
+        }
+    }
+
+    static upsertReqDto(car:TCarUpsert):TCarUpsertDto{
+        const errors = {}
+        for (const element in car) {
+            if(!car[element]){
+                errors[element] = `${element} is required`
+            }
+        }
+        if(Object.keys(errors).length > 0){
+            throw errors
+        }
+        car.mileage = Number(car.mileage)
+        
+
+        return {
+            ... car,
+            win_number:car.winNumber,
+            plate_numbers:car.plateNumbers
         }
     }
 
