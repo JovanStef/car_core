@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateCarDto } from './create-car.dto';
-import { MinLength, IsNumber, IsDate,IsString } from "@nestjs/class-validator";
+import { MinLength, IsString } from "@nestjs/class-validator";
 
 export class UpdateCarDto extends PartialType(CreateCarDto) {
     @IsString()
@@ -12,8 +12,8 @@ export class UpdateCarDto extends PartialType(CreateCarDto) {
 
     photo?: string;
     
-    @IsNumber()
-    mileage?: number;
+    @IsString()
+    mileage?: string;
     
     year?: string;
     

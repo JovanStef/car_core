@@ -1,10 +1,12 @@
+import type { AxiosRequestConfig } from "axios";
 import api from "./axios.instance";
 
 export default abstract class ApiRequestService {
   endpoint = "";
-  async post<T>(payload: any): Promise<T> {
+  async post<T>(payload: any, config?:AxiosRequestConfig<any> | undefined): Promise<T> {
     try {
-      const response = await api.post(`${this.endpoint}`, { ...payload });
+      const response = await api.post(`${this.endpoint}`, payload, {...config}
+      );
       return response.data;
     } catch (error) {
       throw error;

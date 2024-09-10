@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto, TCarUpsert, TCarUpsertDto } from "./car.dto.type";
+import type { TCar, TCarAll, TCarAllResDto, TCarByIdResDto, TCarUpsert } from "./car.dto.type";
 
 export class CarDto{
     static getAllResDto(cars:TCarAllResDto[]):TCarAll[]{
@@ -28,7 +28,7 @@ export class CarDto{
         }
     }
 
-    static upsertReqDto(car:TCarUpsert):TCarUpsertDto{
+    static upsertReqDto(car:TCarUpsert):FormData{
         const errors = {}
         for (const element in car) {
             if(!car[element]){
@@ -38,14 +38,19 @@ export class CarDto{
         if(Object.keys(errors).length > 0){
             throw errors
         }
-        car.mileage = Number(car.mileage)
-        
+        const {make , model , photo,mileage,year,winNumber,plateNumbers} = car 
+        const formData = new FormData()
+        formData.append('_method', 'post')
+        formData.append('make', make)
+        formData.append('model',model)
+        formData.append('photo',photo)
+        formData.append('mileage',mileage)
+        formData.append('year',year)
+        formData.append('win_number',winNumber)
+        formData.append('plate_numbers',plateNumbers)
 
-        return {
-            ... car,
-            win_number:car.winNumber,
-            plate_numbers:car.plateNumbers
-        }
+
+        return formData
     }
 
 }

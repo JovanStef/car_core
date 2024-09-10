@@ -26,7 +26,8 @@ export class CarRequestService extends ApiRequestService {
 
     async upsert(car:TCarUpsert):Promise<TCar>{
         try {
-            const response = await super.post<TCarUpsertDto>(car) as any
+            const carDto = CarDto.upsertReqDto(car)
+            const response = await super.post<TCarUpsertDto>(carDto,{ headers: {"Content-Type":"multipart/form-data"}}) as any
             return response
         } catch (error) {
             throw error

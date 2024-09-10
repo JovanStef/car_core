@@ -27,8 +27,6 @@ const show = ref(false)
 
 const onCarSave = async(payload:any) =>{
   try {
-    console.log(payload);
-    
     const response = await carRequestService.upsert(payload)
     show.value = false
   } catch (error:any) {

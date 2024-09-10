@@ -3,7 +3,6 @@ import Dialog from "primevue/dialog";
 import DatePicker from "primevue/datepicker";
 import { reactive, ref, toRaw } from "vue";
 import FileUpload from "primevue/fileupload";
-import { CarDto } from "@/models/car/car.dto";
 import Message from 'primevue/message';
 
 // TODO all fields
@@ -41,15 +40,12 @@ const errors= ref({})
 const emit = defineEmits(['submit'])
 
 const onFileSelect = async(evt:any)=>{
-  
   car.photo = evt.files[0]
- 
 }
 
 const onSave =() =>{
   try {
-    const carDto = CarDto.upsertReqDto(toRaw(car)as any)
-    emit('submit' , carDto)
+    emit('submit' , toRaw(car))
   } catch (error:any) {
     console.log(error);
     

@@ -1,4 +1,4 @@
-import { MinLength, IsNumber, IsDate,IsString } from "@nestjs/class-validator";
+import { IsString, MinLength } from "@nestjs/class-validator";
 
 export class CreateCarDto {
 
@@ -11,8 +11,8 @@ export class CreateCarDto {
 
     photo?: string;
     
-    @IsNumber()
-    mileage: number;
+    @IsString()
+    mileage: string;
     
     year?: string;
     

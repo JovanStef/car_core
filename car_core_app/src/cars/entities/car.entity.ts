@@ -27,7 +27,7 @@ export class Car {
   photo: string;
   
   @Column()
-  mileage: number;
+  mileage: string;
   
   @Column({nullable:true})
   year: string;
