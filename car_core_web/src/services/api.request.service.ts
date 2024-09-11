@@ -32,14 +32,14 @@ export default abstract class ApiRequestService {
     }
   }
 
-  async delete<T>(payload?: any): Promise<T> {
+  async delete<T>(id?: any , payload?:any): Promise<T> {
+    // TODO dynamic params 
     try {
-      const response = await api.delete(`${this.endpoint}`, { ...payload });
+      const response = await api.delete(`${this.endpoint}/${id}`,{...payload});
       return response.data;
     } catch (error) {
       throw error;
     }
   }
 
-  // TODO env
 }

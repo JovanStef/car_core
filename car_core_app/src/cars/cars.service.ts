@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
-import { Repository } from 'typeorm'
+import { Repository } from 'typeorm';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Car } from './entities/car.entity';
@@ -12,7 +12,7 @@ export class CarsService {
 
   constructor(
     @InjectRepository(Car) private carRepo:Repository<Car>,
-    private readonly userService:UsersService
+    private readonly userService:UsersService,
     ){
   }
   async create(createCarDto: CreateCarDto , user_id:number) {

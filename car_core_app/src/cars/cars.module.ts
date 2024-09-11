@@ -7,11 +7,12 @@ import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { ProfilesService } from 'src/profiles/profiles.service';
 import { Profile } from 'src/profiles/entities/profile.entity';
+import { ImagesService } from 'src/static/images.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Car , User,Profile])],
 
   controllers: [CarsController],
-  providers: [CarsService , UsersService , ProfilesService]
+  providers: [CarsService , UsersService , ProfilesService , ImagesService]
 })
 export class CarsModule {}

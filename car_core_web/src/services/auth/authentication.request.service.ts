@@ -19,9 +19,9 @@ export default class AuthenticationRequestService extends ApiRequestService{
 
     async logout(){
         try {
-            this.endpoint = 'auth/logout'
+            this.endpoint = 'auth'
             const refreshToken = LocalStorageService.get(LocalStorageKeyEnum.RefreshToken)
-           const response = await super.delete(refreshToken)
+           const response = await super.delete('logout',refreshToken)
            LocalStorageService.clear()
            return response
         } catch (error) {
