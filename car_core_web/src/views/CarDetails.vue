@@ -13,7 +13,7 @@ onMounted(async() => {
     try {
         await router.isReady()
         car.value = await carRequestService.getById(route.params.id as string)
-        // TODO UI list details create delete
+        // TODO UI details create delete
     } catch (error) {
         console.log(error);
         

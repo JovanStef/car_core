@@ -4,20 +4,37 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable()
 export class ImagesService{
 
- async writeFileToFolder(file):Promise<string>{
+ async writeFileToFolder(file, dirPath:string):Promise<string>{
     return new Promise((res , rej)=>{
-        if(!file){
+        if(!file || !dirPath){
             rej('Missing properties')
         }
 
         const fileName = this.generateFileName(file)
-        const savePath = require('path').join(__dirname, '..' ,'../src/public/images/car/' + fileName)
+        const path = require('path').join(__dirname, '..' ,dirPath + fileName)
         
-        fs.writeFile(savePath , file.buffer,()=>{
+        fs.writeFile(path , file.buffer,()=>{
             res(fileName)
         })
     })
  } 
+
+ async deleteFileFromFolder(fileName:string , dirPath:string):Promise<void>{
+    return new Promise((res,rej)=>{
+        if(!fileName || !dirPath){
+            rej('Missing properties')
+        }
+        try {
+        const path = require('path').join(__dirname, '..' ,dirPath + fileName)
+        fs.unlink(path, (err) => {
+            if(err) rej(err)
+                res()
+            }); 
+        } catch (error) {
+            rej(error)
+        }
+    })
+ }
  
  generateFileName(file){
     const id = uuidv4()

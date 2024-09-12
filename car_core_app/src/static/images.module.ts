@@ -9,8 +9,8 @@ import { join } from 'path';
         ServeStaticModule.forRoot(
             (() => {
                 return {
-                    rootPath: join(__dirname, '..', process.env.IMAGES_CAR_DIR),
-                    serveRoot: process.env.IMAGES_CAR_URL,
+                    rootPath: join(__dirname, '..', process.env.IMAGES_CAR_ROOT_DIR),
+                    serveRoot: process.env.IMAGES_CAR_SERVE_DIR,
                     exclude: ['/api*'],
                 };
             })()

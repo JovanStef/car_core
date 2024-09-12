@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-@Unique(['win_number', 'plate_numbers'])
+@Unique(['vin_number', 'plate_numbers'])
 export class Car {
   @PrimaryGeneratedColumn()
   id: number;
@@ -33,7 +33,7 @@ export class Car {
   year: string;
   
   @Column()
-  win_number: string;
+  vin_number: string;
   
   @Column()
   plate_numbers: string;

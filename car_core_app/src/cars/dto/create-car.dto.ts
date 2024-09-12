@@ -17,7 +17,7 @@ export class CreateCarDto {
     year?: string;
     
     @MinLength(10)
-    win_number: string;
+    vin_number: string;
     
     @MinLength(4)
     plate_numbers: string;

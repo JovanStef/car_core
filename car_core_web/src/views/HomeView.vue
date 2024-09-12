@@ -6,7 +6,7 @@ import router from '@/router';
 import { CarDetailsRouteEnum } from '@/models/routes/routes.enum';
 import AddNewCar from '@/components/car/AddNewCar.vue';
 import type { TCarAll } from '@/models/car/car.dto.type';
-// TODO car details
+
 const cars = ref<TCarAll[]>([])
 const carRequestService = new CarRequestService()
 const baseUrl = import.meta.env.VITE_BASE_URL
@@ -38,7 +38,7 @@ const onCarSave = async(payload:any) =>{
   }
 }
 const onCarDelete = async(id:number)=>{
-  // TODO confirm dialog
+  // TODO confirm delete dialog
   FullPageSpinnerUiService.setIsLoading(true) 
   try {
     await carRequestService.delete(id)

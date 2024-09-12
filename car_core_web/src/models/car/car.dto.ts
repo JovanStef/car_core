@@ -21,7 +21,7 @@ export class CarDto{
             photo: car.photo ? import.meta.env.VITE_IMAGES_CAR_URL + '/' + car.photo : import.meta.env.VITE_IMAGES_PLACEHOLDER_CAR_URL,
             mileage: car.mileage,
             year: format(new Date(car.year),'yyyy'),
-            winNumber: car.win_number,
+            vinNumber: car.vin_number,
             plateNumbers: car.plate_numbers,
             created: format(new Date(car.created_at),'dd/MM/yyyy'),
             modified: format(new Date(car.updated_at),'dd/MM/yyyy'),
@@ -38,7 +38,7 @@ export class CarDto{
         if(Object.keys(errors).length > 0){
             throw errors
         }
-        const {make , model , photo,mileage,year,winNumber,plateNumbers} = car 
+        const {make , model , photo,mileage,year,vinNumber,plateNumbers} = car 
         const formData = new FormData()
         formData.append('_method', 'post')
         formData.append('make', make)
@@ -46,7 +46,7 @@ export class CarDto{
         formData.append('photo',photo)
         formData.append('mileage',mileage)
         formData.append('year',year)
-        formData.append('win_number',winNumber)
+        formData.append('vin_number',vinNumber)
         formData.append('plate_numbers',plateNumbers)
 
 

@@ -17,7 +17,7 @@ export class CarsController {
   @UseInterceptors(FileInterceptor('photo'))
   async create(@CurrentUser() user , @UploadedFile() file, @Body() createCarDto: CreateCarDto) {
     try {
-      const imageName = await this.imagesService.writeFileToFolder(file)
+      const imageName = await this.imagesService.writeFileToFolder(file,process.env.IMAGES_CAR_WRITE_DIR)
       createCarDto.photo = imageName
       return await this.carsService.create(createCarDto , user);
     } catch (error) {
@@ -32,7 +32,7 @@ export class CarsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.carsService.findOne(+id);
   }
 
@@ -43,8 +43,9 @@ export class CarsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    // TODO remove image
+  async remove(@Param('id') id: string) {
+    const car = await this.carsService.findOne(+id);
+    await this.imagesService.deleteFileFromFolder(car.photo , process.env.IMAGES_CAR_WRITE_DIR)
     return this.carsService.remove(+id);
   }
 }

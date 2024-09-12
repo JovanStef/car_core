@@ -34,15 +34,15 @@ api.interceptors.response.use( (response) => {
       AlertsUiService.addToast({severity: 'error', summary: 'Error', detail: message}).showToast()
       throw error
   }
-  // TODO global message
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if(statusCode === 401){
 
       LocalStorageService.clear()
       router.push(LoginRouteEnum.Name)
+      return
     }
-    // return Promise.reject(error);
+    return Promise.reject(error);
   });
 
 

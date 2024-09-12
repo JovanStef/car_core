@@ -5,20 +5,17 @@ import { reactive, ref, toRaw } from "vue";
 import FileUpload from "primevue/fileupload";
 import Message from 'primevue/message';
 
-// TODO all fields
 // TODO validation
-// TODO submit
-// TODO image upload
 
 const show = defineModel<boolean>("show");
-const { make, model, photo, mileage, year, winNumber, plateNumbers } =
+const { make, model, photo, mileage, year, vinNumber, plateNumbers } =
   defineProps({
     make: String,
     model: String,
     photo: File,
     mileage: Number,
     year: String,
-    winNumber: String,
+    vinNumber: String,
     plateNumbers: String,
   });
 
@@ -28,7 +25,7 @@ const carInitial = {
   photo,
   mileage,
   year,
-  winNumber,
+  vinNumber,
   plateNumbers,
   
 }
@@ -109,14 +106,14 @@ const onCancel = () => {
 
     </div>
     <div class="field mb-4 mb-8">
-      <label for="win-number" class="font-semibold w-24">WIN number</label>
+      <label for="vin-number" class="font-semibold w-24">VIN number</label>
       <InputText
-        id="win-number"
+        id="vin-number"
         class="input flex-auto"
         autocomplete="off"
-        v-model="car.winNumber"
+        v-model="car.vinNumber"
       />
-      <Message v-if="errors.winNumber" severity="error" class="error mt-3">{{ errors.winNumber }}</Message>
+      <Message v-if="errors.vinNumber" severity="error" class="error mt-3">{{ errors.vinNumber }}</Message>
 
     </div>
     <div class="field mb-4 mb-8">
