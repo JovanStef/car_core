@@ -3,6 +3,10 @@ import { RouterView } from 'vue-router';
 import MainNav from './components/navigation/MainNav.vue';
 import FullPageSpinner from './components/loading/FullPageSpinner.vue';
 import Toast from './components/alerts/Toast.vue';
+import { onMounted } from "vue";
+
+onMounted(async () => {
+});
 </script>
 
 <template>

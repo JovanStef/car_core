@@ -89,7 +89,7 @@ const onCancel = () => {
           
           <FileUpload mode="basic" @select="onFileSelect" customUpload auto severity="secondary" class="upload p-button-outlined"/>
         </div>
-        <img v-if="car?.photo?.objectURL" :src="car?.photo?.objectURL" alt="Image" class="preview shadow-md rounded-xl w-full h-64 object-contain" />    
+        <img v-if="car?.photo?.objectURL" :src="car?.photo?.objectURL" alt="Image" class="preview shadow-md rounded-xl w-full h-40 object-contain" />    
       </div>
       <Message v-if="errors.photo" severity="error" class="error mt-3">{{ errors.photo }}</Message>
     </div>

@@ -7,6 +7,7 @@ import {
   NotFoundRouteEnum,
   ServiceSheetsRouteEnum,
 } from "@/models/routes/routes.enum";
+import { FullPageSpinnerUiService } from "@/services/ui/fullPageSpinner.ui.service";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +47,15 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach(GuardService.authGuard);
+router.beforeEach(async(to, from,next)=>{
+  FullPageSpinnerUiService.setIsLoading(true);
+  
+  const path = await GuardService.authGuard(to, from)
+  next(path)
+});
+
+router.afterEach(() => {
+  FullPageSpinnerUiService.setIsLoading(false);
+})
 
 export default router;
