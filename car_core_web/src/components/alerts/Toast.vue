@@ -4,7 +4,6 @@ import { useSubscription } from '@vueuse/rxjs';
 import Toast from 'primevue/toast';
 
 import { useToast } from "primevue/usetoast";
-import { onMounted } from 'vue';
 const toast = useToast();
 const toast$ = AlertsUiService.toast
 

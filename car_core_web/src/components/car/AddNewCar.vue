@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
 import DatePicker from "primevue/datepicker";
-import { reactive, ref, toRaw } from "vue";
+import { reactive, toRaw } from "vue";
 import FileUpload from "primevue/fileupload";
 import Message from 'primevue/message';
 
 // TODO validation
 
 const show = defineModel<boolean>("show");
+  const errors = defineModel<any>("errors");
 const { make, model, photo, mileage, year, vinNumber, plateNumbers } =
   defineProps({
     make: String,
@@ -32,8 +33,6 @@ const carInitial = {
 
 const car = reactive({...carInitial});
 
-const errors= ref({})
-
 const emit = defineEmits(['submit'])
 
 const onFileSelect = async(evt:any)=>{
@@ -45,15 +44,14 @@ const onSave =() =>{
     emit('submit' , toRaw(car))
   } catch (error:any) {
     console.log(error);
-    
     errors.value = error
-    
   }
 }
 
 const onCancel = () => {
   Object.assign(car, carInitial);
   show.value = false
+  errors.value = {}
 }
 </script>
 

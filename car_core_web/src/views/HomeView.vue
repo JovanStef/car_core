@@ -10,6 +10,7 @@ import { AlertsUiService } from "@/services/ui/alerts.ui.service";
 
 const cars = ref<TCarAll[]>([]);
 const carRequestService = new CarRequestService();
+const createCarErrors = ref({})
 const show = ref(false);
 const carToDelete = ref<TCarAll>();
 const showDeleteDialog = ref(false)
@@ -31,12 +32,12 @@ const onCarSave = async (payload: any) => {
   try {
     await carRequestService.upsert(payload);
     AlertsUiService.addToast({ severity: 'success', summary: 'Success', detail: 'Car create success', life: 3000 }).showToast()
-
     show.value = false;
     cars.value = await carRequestService.getAll();
     FullPageSpinnerUiService.setIsLoading(false);
   } catch (error: any) {
     FullPageSpinnerUiService.setIsLoading(false);
+    createCarErrors.value = error
     console.log(error);
   }
 };
@@ -49,8 +50,7 @@ const deleteCar= async (id: number) => {
   FullPageSpinnerUiService.setIsLoading(true);
   try {
     await carRequestService.delete(id);
-  showDeleteDialog.value = false
-
+    showDeleteDialog.value = false
     FullPageSpinnerUiService.setIsLoading(false);
     cars.value = await carRequestService.getAll();
     AlertsUiService.addToast({ severity: 'success', summary: 'Success', detail: 'Car deleted success', life: 3000 }).showToast()
@@ -62,7 +62,7 @@ const deleteCar= async (id: number) => {
 </script>
 
 <template>
-  <AddNewCar v-model:show="show" @submit="onCarSave" />
+  <AddNewCar v-model:show="show" @submit="onCarSave" v-model:errors="createCarErrors"/>
 <ConfirmCarDelete v-model:show="showDeleteDialog" :car="carToDelete" @confirm="deleteCar"/>
   <div
     class="grid gap-4 actions-container border rounded-xl overflow-hidden mb-4"
